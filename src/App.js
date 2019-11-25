@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from "radium";
+// import Radium, {StyleRoot} from "radium";
 // import React, {useState} from 'react';
 import './App.css';
 import Person from './Person/Person';
@@ -60,11 +60,11 @@ class App extends Component {
             border: '1px solid green',
             padding: '8px',
             borderRadius: '4px',
-            color: 'green',
-            ':hover': {
-                backgroundColor: 'green',
-                color: 'white',
-            }
+            color: 'green'
+            // ':hover': {
+            //     backgroundColor: 'green',
+            //     color: 'white',
+            // }
         };
 
         let persons = null;
@@ -88,14 +88,14 @@ class App extends Component {
                 </div>
             )
             styleBtn.backgroundColor = 'pink';
-            styleBtn[':hover'] = {
-                backgroundColor: 'red',
-                color: 'white',
-            }
+            // styleBtn[':hover'] = {
+            //     backgroundColor: 'red',
+            //     color: 'white',
+            // }
         }
 
         const classes = [];
-        if(this.state.persons.length <=2){
+        if(this.state.persons.length <= 2){
             classes.push('red');
         }
         if(this.state.persons.length <= 1){
@@ -103,21 +103,20 @@ class App extends Component {
         }
 
         return (
-            <StyleRoot>
-            <div className="App">
-                <h1>Hi, I'm React App</h1>
-                <p className={classes.join(' ')}>I's working</p>
-                <button style={styleBtn} key='1' onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>
-                <button style={styleBtn} key='2' onClick={this.togglePersonHandler}>Toggle Name</button>
-                {persons}
-            </div>
-            </StyleRoot>
-        );
+                <div className= "App">
+                    <h1>Hi, I'm React App</h1>
+                    <p className={classes.join(' ')}>I's working</p>
+                    <button onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>
+                    <button onClick={this.togglePersonHandler}>Toggle Name</button>
+                    {persons}
+                </div>
+        )
       // React.createElement('div', {className : 'App'} , React.createElement('h1', null, 'Czy dziala?'))
     }
 }
 
-export default Radium(App);
+export default App;
+// export default Radium(App);
 // const App = props => {
 //     const [personsState, setPersonsState] = useState({
 //         persons : [
