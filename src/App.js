@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Radium, {StyleRoot} from "radium";
 // import React, {useState} from 'react';
 import './App.css';
 import Person from './Person/Person';
@@ -60,6 +61,10 @@ class App extends Component {
             padding: '8px',
             borderRadius: '4px',
             color: 'green',
+            ':hover': {
+                backgroundColor: 'green',
+                color: 'white',
+            }
         };
 
         let persons = null;
@@ -82,21 +87,37 @@ class App extends Component {
                     }
                 </div>
             )
+            styleBtn.backgroundColor = 'pink';
+            styleBtn[':hover'] = {
+                backgroundColor: 'red',
+                color: 'white',
+            }
+        }
+
+        const classes = [];
+        if(this.state.persons.length <=2){
+            classes.push('red');
+        }
+        if(this.state.persons.length <= 1){
+            classes.push('bold');
         }
 
         return (
+            <StyleRoot>
             <div className="App">
                 <h1>Hi, I'm React App</h1>
-                <button style={styleBtn} onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>
-                <button style={styleBtn} onClick={this.togglePersonHandler}>Toggle Name</button>
+                <p className={classes.join(' ')}>I's working</p>
+                <button style={styleBtn} key='1' onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>
+                <button style={styleBtn} key='2' onClick={this.togglePersonHandler}>Toggle Name</button>
                 {persons}
             </div>
+            </StyleRoot>
         );
       // React.createElement('div', {className : 'App'} , React.createElement('h1', null, 'Czy dziala?'))
     }
 }
 
-export default App;
+export default Radium(App);
 // const App = props => {
 //     const [personsState, setPersonsState] = useState({
 //         persons : [
