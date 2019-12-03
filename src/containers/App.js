@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 // import Radium, {StyleRoot} from "radium";
 // import React, {useState} from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
     state = {
@@ -71,20 +73,9 @@ class App extends Component {
         if(this.state.showPerson){
             persons = (
                 <div>
-                    { this.state.persons.map( (person, index) =>{
-                        return <Person
-                            key={person.id}
-                            click={() => this.deletePersonHandler(index)}
-                            name={person.name}
-                            age={person.age}
-                            change={(event) => this.nameChangeHandler(event, person.id)}
-                        />
-                    })
-                        // <Person name={this.state.persons[0].name} age={this.state.persons[0].age}
-                        //         click={this.switchNameHandler.bind(this, 'Kasia!')}/>
-                        // < Person name={this.state.persons[1].name} age={this.state.persons[1].age}
-                        // change={this.nameChangeHandler}/>
-                    }
+                    return <Persons persons={this.state.persons}
+                                   clicked={this.deletePersonHandler}
+                                   changed={this.nameChangeHandler} />
                 </div>
             )
             styleBtn.backgroundColor = 'pink';
@@ -94,20 +85,12 @@ class App extends Component {
             // }
         }
 
-        const classes = [];
-        if(this.state.persons.length <= 2){
-            classes.push('red');
-        }
-        if(this.state.persons.length <= 1){
-            classes.push('bold');
-        }
+
 
         return (
                 <div className= "App">
-                    <h1>Hi, I'm React App</h1>
-                    <p className={classes.join(' ')}>I's working</p>
-                    <button onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>
-                    <button onClick={this.togglePersonHandler}>Toggle Name</button>
+                    <Cockpit persons={ this.state.persons}
+                    clicked={this.togglePersonHandler}/>
                     {persons}
                 </div>
         )

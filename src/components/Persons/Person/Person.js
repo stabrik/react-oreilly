@@ -10,6 +10,11 @@ const person = ({name, age, children, click, change}) => {
     //     }
     //
     // }
+
+    const rnd = Math.random();
+    if ( rnd > 0.7){
+        throw new Error(' Something went wrong');
+    }
     return (
         <div className='person' > {/*style={style}*/}
             <p onClick={click}>Hello, I'm {name} and I have {age} years old</p>
