@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+    useEffect(()=>{
+        console.log('[Cockpit.js] useEffect')
+    });
+
     const classes = [];
     if(props.persons.length <= 2){
         classes.push('red');
@@ -11,7 +15,7 @@ const cockpit = (props) => {
 
     return(
         <div>
-            <h1>Hi, I'm React App</h1>
+            <h1>{props.title}</h1>
             <p className={classes.join(' ')}>I's working</p>
             {/*<button onClick={() => this.switchNameHandler('Katarzyna!')}>Switch Name</button>*/}
             <button onClick={props.clicked}>Toggle Name</button>
@@ -19,4 +23,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default Cockpit;
